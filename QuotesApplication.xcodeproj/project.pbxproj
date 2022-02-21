@@ -77,6 +77,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		D200CDF327C3D4A50034B977 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				D2DB3B7C27761DEE00B7BA63 /* Tags */,
+				D2DB3B73277611FF00B7BA63 /* RandomQuote */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		D2DB3B3D2774DAE900B7BA63 = {
 			isa = PBXGroup;
 			children = (
@@ -98,8 +107,7 @@
 		D2DB3B482774DAE900B7BA63 /* QuotesApplication */ = {
 			isa = PBXGroup;
 			children = (
-				D2DB3B7C27761DEE00B7BA63 /* Tags */,
-				D2DB3B73277611FF00B7BA63 /* RandomQuote */,
+				D200CDF327C3D4A50034B977 /* Screens */,
 				D2DB3B5D2774E4D500B7BA63 /* Models */,
 				D2DB3B5E2774E4E300B7BA63 /* Helpers */,
 				D2DB3B5F2774E4EE00B7BA63 /* Extensions */,
