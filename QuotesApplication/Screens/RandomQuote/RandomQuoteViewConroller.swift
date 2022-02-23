@@ -40,6 +40,15 @@ class RandomQuoteViewConroller: UIViewController {
         return button
     }()
     
+    lazy private var menuButton: UIBarButtonItem = {
+        return UIBarButtonItem(
+            image: UIImage(named: "menuButton"),
+            style: .plain,
+            target: self,
+            action: #selector(menuButtonTapped)
+        )
+    }()
+    
     lazy private var authorButton: UIButton = {
         let button = UIButton()
         
@@ -86,12 +95,19 @@ class RandomQuoteViewConroller: UIViewController {
         }
         
         refreshButtonWasTapped()
+        navigationItem.rightBarButtonItem = menuButton
     }
     
     @objc private func refreshButtonWasTapped() {
         viewModel.fetchRandomQuote{
             self.collectionView.reloadData()
         }
+    }
+    
+    @objc private func menuButtonTapped() {
+        let viewModel = APIFilterViewModel()
+        let vc = APIFilterTableViewController(viewModel: viewModel)
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func setupLayout() {

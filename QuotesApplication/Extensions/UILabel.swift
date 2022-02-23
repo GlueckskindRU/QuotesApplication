@@ -19,4 +19,23 @@ extension UILabel {
         
         return label
     }
+    
+    static func with(
+        font: UIFont,
+        aligment: NSTextAlignment,
+        color: UIColor,
+        bgColor: UIColor,
+        cornerRadius: CGFloat
+    ) -> UILabel {
+        let label = UILabel.with(
+            font: font,
+            aligment: aligment,
+            color: color,
+            lines: 0
+        )
+        label.backgroundColor = bgColor
+        label.layer.cornerRadius = cornerRadius
+        label.clipsToBounds = true
+        return label
+    }
 }

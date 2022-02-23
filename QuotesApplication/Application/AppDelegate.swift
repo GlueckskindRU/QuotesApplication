@@ -17,9 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
         
+        let navigationController = UINavigationController()
         let randomQuoteViewModel = RandomQuoteViewModel()
         let randomQuoteVC = RandomQuoteViewConroller(viewModel: randomQuoteViewModel)
-        window?.rootViewController = randomQuoteVC
+        navigationController.viewControllers = [randomQuoteVC]
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         return true
     }
