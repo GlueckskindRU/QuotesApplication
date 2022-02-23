@@ -7,5 +7,6 @@ target 'QuotesApplication' do
 
   # Pods for QuotesApplication
   pod 'Moya'
+  pod 'SnapKit'
 
 end
