@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class TagCell: UICollectionViewCell {
     lazy private var tagLabel: UILabel = {
@@ -45,12 +46,10 @@ class TagCell: UICollectionViewCell {
         contentView.addSubview(tagLabel)
         
         let margin: CGFloat = 2
-        
-        NSLayoutConstraint.activate([
-            tagLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: margin),
-            tagLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin),
-            contentView.trailingAnchor.constraint(equalTo: tagLabel.trailingAnchor, constant: margin),
-            contentView.bottomAnchor.constraint(equalTo: tagLabel.bottomAnchor, constant: margin * 4.0),
-        ])
+
+        tagLabel.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(contentView).inset(margin)
+            $0.bottom.equalTo(contentView).inset(margin * 4.0)
+        }
     }
 }

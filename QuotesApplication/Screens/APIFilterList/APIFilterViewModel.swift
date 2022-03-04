@@ -7,12 +7,6 @@
 
 import UIKit.UIViewController
 
-protocol APIFilterViewModelProtocol {
-    var apiFiltesCount: Int { get }
-    
-    func cellViewModel(for row: Int, from vc: UIViewController) -> APIFilterViewModel.CellViewModel
-}
-
 extension APIFilterViewModel {
     enum APIFilters: Int, CaseIterable {
         case authors

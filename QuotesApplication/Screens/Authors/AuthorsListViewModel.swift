@@ -7,14 +7,6 @@
 
 import Moya
 
-protocol AuthorsListViewModelProtocol {
-    var title: String { get }
-    var authorsCount: Int { get }
-    
-    func fetchAuthors(_ completion: @escaping () -> Void)
-    func cellViewModel(for row: Int) -> AuthorsListViewModel.CellViewModel
-}
-
 extension AuthorsListViewModel {
     struct CellViewModel {
         let authorName: String

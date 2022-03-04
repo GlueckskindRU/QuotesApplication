@@ -36,16 +36,24 @@ class AuthorsListTableViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        addSubviews()
         setupLayout()
-        viewModel.fetchAuthors { [weak self] in
-            self?.tableView.reloadData()
-        }
+        bindUIWithViewModel()
+        
         navigationItem.title = viewModel.title
     }
     
-    private func setupLayout() {
+    private func addSubviews() {
         view.addSubview(tableView)
-        
+    }
+    
+    private func bindUIWithViewModel() {
+        viewModel.fetchAuthors { [weak self] in
+            self?.tableView.reloadData()
+        }
+    }
+    
+    private func setupLayout() {
         tableView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }

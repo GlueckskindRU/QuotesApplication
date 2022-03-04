@@ -7,14 +7,6 @@
 
 import Moya
 
-protocol RandomQuoteViewModelProtocol: AnyObject {
-    var bindAuthor: ((String) -> Void)? { get set }
-    var bindQuoteText: ((String) -> Void)? { get set }
-    var tagsArray: [String] { get }
-    
-    func fetchRandomQuote(_ completion: @escaping () -> Void)
-}
-
 class RandomQuoteViewModel: RandomQuoteViewModelProtocol {
     private var networkService = MoyaProvider<NetworkService>()
     

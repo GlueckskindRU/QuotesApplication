@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class RandomQuoteViewConroller: UIViewController {
     private var viewModel: RandomQuoteViewModelProtocol
@@ -35,7 +36,6 @@ class RandomQuoteViewConroller: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .clear
         button.setImage(UIImage(named: "refreshButton"), for: .normal)
-        button.addTarget(self, action: #selector(refreshButtonWasTapped), for: .touchUpInside)
          
         return button
     }()
@@ -45,7 +45,7 @@ class RandomQuoteViewConroller: UIViewController {
             image: UIImage(named: "menuButton"),
             style: .plain,
             target: self,
-            action: #selector(menuButtonTapped)
+            action: nil
         )
     }()
     
@@ -83,22 +83,42 @@ class RandomQuoteViewConroller: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
-        setupLayout()
         
+        addSubviews()
+        setupLayout()
+        addActions()
+        bindUIWithViewModel()
+        
+        fetchRandomQuote()
+    }
+    
+    private func addSubviews() {
+        view.addSubview(authorButton)
+        view.addSubview(refreshButton)
+        view.addSubview(quoteText)
+        view.addSubview(collectionView)
+        
+        navigationItem.rightBarButtonItem = menuButton
+    }
+    
+    private func addActions() {
+        refreshButton.addTarget(self, action: #selector(fetchRandomQuote), for: .touchUpInside)
+        menuButton.action = #selector(menuButtonTapped)
+    }
+    
+    private func bindUIWithViewModel() {
         viewModel.bindQuoteText = { [weak self] quoteText in
             guard let self = self else { return }
             self.quoteText.text = quoteText
         }
+        
         viewModel.bindAuthor = { [weak self] author in
             guard let self = self else { return }
             self.authorButton.setTitle(author, for: .normal)
         }
-        
-        refreshButtonWasTapped()
-        navigationItem.rightBarButtonItem = menuButton
     }
     
-    @objc private func refreshButtonWasTapped() {
+    @objc private func fetchRandomQuote() {
         viewModel.fetchRandomQuote{
             self.collectionView.reloadData()
         }
@@ -111,30 +131,27 @@ class RandomQuoteViewConroller: UIViewController {
     }
     
     private func setupLayout() {
-        view.addSubview(authorButton)
-        view.addSubview(refreshButton)
-        view.addSubview(quoteText)
-        view.addSubview(collectionView)
+        quoteText.snp.makeConstraints {
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+        }
         
-        NSLayoutConstraint.activate([
-            quoteText.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: quoteText.trailingAnchor, constant: 16),
-            
-            collectionView.topAnchor.constraint(equalTo: quoteText.bottomAnchor, constant: 16),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            view.trailingAnchor.constraint(equalTo: collectionView.trailingAnchor, constant: 16),
-            collectionView.heightAnchor.constraint(equalToConstant: VisualConstants.collectionCellHeight),
-            
-            authorButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor, constant: 16),
-            authorButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            refreshButton.leadingAnchor.constraint(equalTo: authorButton.trailingAnchor, constant: 16),
-            authorButton.heightAnchor.constraint(equalToConstant: 50),
-            view.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: authorButton.bottomAnchor, constant: 16),
-            
-            refreshButton.centerYAnchor.constraint(equalTo: authorButton.centerYAnchor),
-            view.safeAreaLayoutGuide.trailingAnchor.constraint(equalTo: refreshButton.trailingAnchor, constant: 8),
-            refreshButton.widthAnchor.constraint(equalToConstant: 50),
-            refreshButton.heightAnchor.constraint(equalToConstant: 50),
-        ])
+        collectionView.snp.makeConstraints {
+            $0.leading.trailing.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.top.equalTo(quoteText.snp.bottomMargin).offset(16)
+            $0.height.equalTo(VisualConstants.collectionCellHeight)
+        }
+        
+        authorButton.snp.makeConstraints {
+            $0.top.equalTo(collectionView.snp.bottomMargin).offset(16)
+            $0.leading.bottom.equalTo(view.safeAreaLayoutGuide).inset(16)
+            $0.height.equalTo(50)
+        }
+        
+        refreshButton.snp.makeConstraints {
+            $0.leading.equalTo(authorButton.snp.trailingMargin).offset(16)
+            $0.centerY.equalTo(authorButton.snp.centerY)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).inset(8)
+            $0.height.width.equalTo(50)
+        }
     }
 }

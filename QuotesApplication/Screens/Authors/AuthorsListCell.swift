@@ -48,21 +48,29 @@ class AuthorsListCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        setupLayout()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
+        setupUI()
+    }
+    
+    private func setupUI() {
+        contentView.backgroundColor = .clear
+        
+        addSubview()
         setupLayout()
     }
     
-    private func setupLayout() {
-        contentView.backgroundColor = .clear
+    private func addSubview() {
         contentView.addSubview(authorNameLabel)
         contentView.addSubview(authorDescriptionLabel)
         contentView.addSubview(quotesCountLabel)
-        
+    }
+    
+    private func setupLayout() {
         quotesCountLabel.snp.makeConstraints {
             $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(16)

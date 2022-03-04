@@ -36,12 +36,15 @@ class APIFilterTableViewController: UIViewController {
         super.viewDidLoad()
         
         view.backgroundColor = .white
+        addSubviews()
         setupLayout()
     }
     
-    private func setupLayout() {
+    private func addSubviews() {
         view.addSubview(tableView)
-        
+    }
+    
+    private func setupLayout() {
         tableView.snp.makeConstraints {
             $0.top.leading.trailing.bottom.equalToSuperview()
         }
@@ -56,7 +59,12 @@ extension APIFilterTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: APIFilterCell.self), for: indexPath) as? APIFilterCell else {
+        guard
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: APIFilterCell.self),
+                for: indexPath
+            ) as? APIFilterCell
+        else {
             return UITableViewCell()
         }
         
