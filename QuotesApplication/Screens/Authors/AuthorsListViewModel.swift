@@ -19,14 +19,10 @@ class AuthorsListViewModel: AuthorsListViewModelProtocol {
     private var networkService = MoyaProvider<NetworkService>()
     private var authors: Authors?
     
-    private(set) var title: String
+    let title = "List of Authors"
     
     var authorsCount: Int {
         return authors?.results.count ?? 0
-    }
-    
-    init(title: String) {
-        self.title = title
     }
     
     func fetchAuthors(_ completion: @escaping () -> Void) {

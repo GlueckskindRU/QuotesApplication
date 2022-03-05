@@ -125,8 +125,7 @@ class RandomQuoteViewConroller: UIViewController {
     }
     
     @objc private func menuButtonTapped() {
-        let viewModel = APIFilterViewModel()
-        let vc = APIFilterTableViewController(viewModel: viewModel)
+        let vc = APIFilterAssembly.make()
         navigationController?.pushViewController(vc, animated: true)
     }
     

@@ -17,6 +17,10 @@
 		D200CE0327D200230034B977 /* APIFilterViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0227D200230034B977 /* APIFilterViewModelProtocol.swift */; };
 		D200CE0527D200500034B977 /* AuthorsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0427D200500034B977 /* AuthorsListViewModelProtocol.swift */; };
 		D200CE0727D200770034B977 /* RandomQuoteViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0627D200770034B977 /* RandomQuoteViewModelProtocol.swift */; };
+		D200CE0A27D247360034B977 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0927D247350034B977 /* ServiceLocator.swift */; };
+		D200CE0C27D2496F0034B977 /* RandomQuoteAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0B27D2496F0034B977 /* RandomQuoteAssembly.swift */; };
+		D200CE0E27D2683B0034B977 /* AuthorsListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0D27D2683B0034B977 /* AuthorsListAssembly.swift */; };
+		D200CE1027D3D8090034B977 /* APIFilterAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0F27D3D8090034B977 /* APIFilterAssembly.swift */; };
 		D2DB3B4A2774DAE900B7BA63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB3B492774DAE900B7BA63 /* AppDelegate.swift */; };
 		D2DB3B512774DAE900B7BA63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2DB3B4F2774DAE900B7BA63 /* Main.storyboard */; };
 		D2DB3B532774DAEA00B7BA63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2DB3B522774DAEA00B7BA63 /* Assets.xcassets */; };
@@ -51,6 +55,10 @@
 		D200CE0227D200230034B977 /* APIFilterViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFilterViewModelProtocol.swift; sourceTree = "<group>"; };
 		D200CE0427D200500034B977 /* AuthorsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		D200CE0627D200770034B977 /* RandomQuoteViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomQuoteViewModelProtocol.swift; sourceTree = "<group>"; };
+		D200CE0927D247350034B977 /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
+		D200CE0B27D2496F0034B977 /* RandomQuoteAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomQuoteAssembly.swift; sourceTree = "<group>"; };
+		D200CE0D27D2683B0034B977 /* AuthorsListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsListAssembly.swift; sourceTree = "<group>"; };
+		D200CE0F27D3D8090034B977 /* APIFilterAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFilterAssembly.swift; sourceTree = "<group>"; };
 		D2DB3B462774DAE900B7BA63 /* QuotesApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuotesApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DB3B492774DAE900B7BA63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2DB3B502774DAE900B7BA63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,6 +121,7 @@
 				D200CDF727C3D5DA0034B977 /* AuthorsListViewModel.swift */,
 				D200CE0427D200500034B977 /* AuthorsListViewModelProtocol.swift */,
 				D200CDF927C3D6190034B977 /* AuthorsListTableViewController.swift */,
+				D200CE0D27D2683B0034B977 /* AuthorsListAssembly.swift */,
 			);
 			path = Authors;
 			sourceTree = "<group>";
@@ -124,6 +133,7 @@
 				D200CDFE27C68C9F0034B977 /* APIFilterTableViewController.swift */,
 				D200CE0027C68CB70034B977 /* APIFilterViewModel.swift */,
 				D200CE0227D200230034B977 /* APIFilterViewModelProtocol.swift */,
+				D200CE0F27D3D8090034B977 /* APIFilterAssembly.swift */,
 			);
 			path = APIFilterList;
 			sourceTree = "<group>";
@@ -131,6 +141,7 @@
 		D200CE0827D200930034B977 /* ServiceLocator */ = {
 			isa = PBXGroup;
 			children = (
+				D200CE0927D247350034B977 /* ServiceLocator.swift */,
 			);
 			path = ServiceLocator;
 			sourceTree = "<group>";
@@ -233,6 +244,7 @@
 				D200CE0627D200770034B977 /* RandomQuoteViewModelProtocol.swift */,
 				D2DB3B7627761CD100B7BA63 /* RandomQuoteViewConroller.swift */,
 				D2DB3B7F277A142400B7BA63 /* RandomQuoteCollectionViewDataSource.swift */,
+				D200CE0B27D2496F0034B977 /* RandomQuoteAssembly.swift */,
 			);
 			path = RandomQuote;
 			sourceTree = "<group>";
@@ -372,8 +384,11 @@
 				D2DB3B82277A16C000B7BA63 /* VisualConstants.swift in Sources */,
 				D2DB3B7727761CD100B7BA63 /* RandomQuoteViewConroller.swift in Sources */,
 				D2DB3B7B27761DA900B7BA63 /* UILabel.swift in Sources */,
+				D200CE0C27D2496F0034B977 /* RandomQuoteAssembly.swift in Sources */,
+				D200CE0A27D247360034B977 /* ServiceLocator.swift in Sources */,
 				D2DB3B702775EA6E00B7BA63 /* Quotes.swift in Sources */,
 				D2DB3B642774E57100B7BA63 /* AppError.swift in Sources */,
+				D200CE1027D3D8090034B977 /* APIFilterAssembly.swift in Sources */,
 				D2DB3B662774E58800B7BA63 /* UnionLogic.swift in Sources */,
 				D2DB3B682775E9C400B7BA63 /* NetworkService.swift in Sources */,
 				D200CDFA27C3D6190034B977 /* AuthorsListTableViewController.swift in Sources */,
@@ -388,6 +403,7 @@
 				D200CE0527D200500034B977 /* AuthorsListViewModelProtocol.swift in Sources */,
 				D2DB3B6E2775EA5900B7BA63 /* Quote.swift in Sources */,
 				D200CDFF27C68C9F0034B977 /* APIFilterTableViewController.swift in Sources */,
+				D200CE0E27D2683B0034B977 /* AuthorsListAssembly.swift in Sources */,
 				D200CE0327D200230034B977 /* APIFilterViewModelProtocol.swift in Sources */,
 				D2DB3B6A2775EA2300B7BA63 /* Author.swift in Sources */,
 				D200CE0727D200770034B977 /* RandomQuoteViewModelProtocol.swift in Sources */,

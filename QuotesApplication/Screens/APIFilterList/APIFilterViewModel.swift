@@ -28,8 +28,7 @@ extension APIFilterViewModel {
             switch self {
                 case .authors:
                     return { parentVC in
-                        let viewModel = AuthorsListViewModel(title: self.decription)
-                        let vc = AuthorsListTableViewController(viewModel: viewModel)
+                        let vc = AuthorsListAssembly.make()
                         parentVC?.navigationController?.pushViewController(vc, animated: true)
                     }
                 case .quotes:

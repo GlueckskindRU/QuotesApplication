@@ -13,17 +13,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        registerServices()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.backgroundColor = .white
         
         let navigationController = UINavigationController()
-        let randomQuoteViewModel = RandomQuoteViewModel()
-        let randomQuoteVC = RandomQuoteViewConroller(viewModel: randomQuoteViewModel)
+        let randomQuoteVC = RandomQuoteAssembly.make()
         navigationController.viewControllers = [randomQuoteVC]
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         return true
+    }
+    
+    private func registerServices() {
+        RandomQuoteAssembly.register()
+        AuthorsListAssembly.register()
+        APIFilterAssembly.register()
+        
+        ServiceLocator.shared.debug()
     }
 }
 
