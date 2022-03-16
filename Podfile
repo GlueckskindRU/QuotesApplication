@@ -8,5 +8,6 @@ target 'QuotesApplication' do
   # Pods for QuotesApplication
   pod 'Moya'
   pod 'SnapKit'
+  pod 'Swinject' 
 
 end
