@@ -5,9 +5,17 @@
 //  Created by Yuri Ivashin on 21.02.2022.
 //
 
-import Moya
+import Foundation
 
 extension AuthorsListViewModel {
+    struct Context {
+        let title: String
+    }
+    
+    struct Dependencies {
+        let networkService: AuthorNetworking
+    }
+    
     struct CellViewModel {
         let authorName: String
         let authorDescription: String
@@ -15,29 +23,31 @@ extension AuthorsListViewModel {
     }
 }
 
-class AuthorsListViewModel: AuthorsListViewModelProtocol {
-    private var networkService = MoyaProvider<NetworkService>()
+class AuthorsListViewModel {
+    private let context: Context
+    private let deps: Dependencies
+    
     private var authors: Authors?
     
-    let title = "List of Authors"
-    
-    var authorsCount: Int {
-        return authors?.results.count ?? 0
+    init(context: Context, deps: Dependencies) {
+        self.context = context
+        self.deps = deps
     }
+}
+
+extension AuthorsListViewModel: AuthorsListViewModelProtocol {
+    var title: String { context.title }
+    
+    var authorsCount: Int { authors?.results.count ?? 0 }
     
     func fetchAuthors(_ completion: @escaping () -> Void) {
-        networkService.request(.getAuthors) { [weak self] result in
-            
+        deps.networkService.getAuthors { [weak self] result in
             guard let self = self else { return }
             
             switch result {
-                case .success(let response):
-                    if let authors = try? response.map(Authors.self) {
-                        self.authors = authors
-                        completion()
-                    } else {
-                        print("1. ERROR WHILE CONVERSION")
-                    }
+                case .success(let authors):
+                    self.authors = authors
+                    completion()
                 case .failure(let error):
                     print("2. ERROR: \(error.localizedDescription)")
             }
@@ -46,7 +56,11 @@ class AuthorsListViewModel: AuthorsListViewModelProtocol {
     
     func cellViewModel(for row: Int) -> CellViewModel {
         guard let author = authors?.results[row] else {
-            fatalError("Incorrect row index for Authors: <\(row)>")
+            return CellViewModel(
+                authorName: "",
+                authorDescription: "",
+                quotesCount: ""
+            )
         }
         
         return CellViewModel(

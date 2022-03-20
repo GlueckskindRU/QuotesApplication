@@ -28,7 +28,7 @@ extension APIFilterViewModel {
             switch self {
                 case .authors:
                     return { parentVC in
-                        let vc = AuthorsListAssembly.make()
+                        let vc = AuthorsListAssembly.make(title: decription)
                         parentVC?.navigationController?.pushViewController(vc, animated: true)
                     }
                 case .quotes:
@@ -60,7 +60,11 @@ class APIFilterViewModel: APIFilterViewModelProtocol {
         from vc: UIViewController
     ) -> CellViewModel {
         guard let apiFilter = APIFilters(rawValue: row) else {
-            fatalError("Incorrect row index for APIFilters: <\(row)>")
+            return CellViewModel(
+                title: "",
+                buttonTapped: { _ in return Void() },
+                parentVC: vc
+            )
         }
 
         return CellViewModel(

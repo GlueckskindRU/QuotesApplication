@@ -17,10 +17,16 @@
 		D200CE0327D200230034B977 /* APIFilterViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0227D200230034B977 /* APIFilterViewModelProtocol.swift */; };
 		D200CE0527D200500034B977 /* AuthorsListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0427D200500034B977 /* AuthorsListViewModelProtocol.swift */; };
 		D200CE0727D200770034B977 /* RandomQuoteViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0627D200770034B977 /* RandomQuoteViewModelProtocol.swift */; };
-		D200CE0A27D247360034B977 /* ServiceLocator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0927D247350034B977 /* ServiceLocator.swift */; };
 		D200CE0C27D2496F0034B977 /* RandomQuoteAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0B27D2496F0034B977 /* RandomQuoteAssembly.swift */; };
 		D200CE0E27D2683B0034B977 /* AuthorsListAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0D27D2683B0034B977 /* AuthorsListAssembly.swift */; };
 		D200CE1027D3D8090034B977 /* APIFilterAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = D200CE0F27D3D8090034B977 /* APIFilterAssembly.swift */; };
+		D25BD75A27E25CD80089B01D /* QuoteNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BD75927E25CD80089B01D /* QuoteNetworking.swift */; };
+		D25BD75C27E25DA70089B01D /* AuthorNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BD75B27E25DA70089B01D /* AuthorNetworking.swift */; };
+		D25BD75E27E25E520089B01D /* TagsNetworking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BD75D27E25E520089B01D /* TagsNetworking.swift */; };
+		D25BD76027E25EA00089B01D /* MoyaProvider+Custom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BD75F27E25EA00089B01D /* MoyaProvider+Custom.swift */; };
+		D25BD76327E2619C0089B01D /* QuoteNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BD76227E2619C0089B01D /* QuoteNetworkService.swift */; };
+		D25BD76527E2627B0089B01D /* AuthorNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BD76427E2627B0089B01D /* AuthorNetworkService.swift */; };
+		D25BD76727E262FE0089B01D /* TagsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BD76627E262FE0089B01D /* TagsNetworkService.swift */; };
 		D2DB3B4A2774DAE900B7BA63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB3B492774DAE900B7BA63 /* AppDelegate.swift */; };
 		D2DB3B512774DAE900B7BA63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2DB3B4F2774DAE900B7BA63 /* Main.storyboard */; };
 		D2DB3B532774DAEA00B7BA63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2DB3B522774DAEA00B7BA63 /* Assets.xcassets */; };
@@ -55,10 +61,16 @@
 		D200CE0227D200230034B977 /* APIFilterViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFilterViewModelProtocol.swift; sourceTree = "<group>"; };
 		D200CE0427D200500034B977 /* AuthorsListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsListViewModelProtocol.swift; sourceTree = "<group>"; };
 		D200CE0627D200770034B977 /* RandomQuoteViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomQuoteViewModelProtocol.swift; sourceTree = "<group>"; };
-		D200CE0927D247350034B977 /* ServiceLocator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceLocator.swift; sourceTree = "<group>"; };
 		D200CE0B27D2496F0034B977 /* RandomQuoteAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomQuoteAssembly.swift; sourceTree = "<group>"; };
 		D200CE0D27D2683B0034B977 /* AuthorsListAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsListAssembly.swift; sourceTree = "<group>"; };
 		D200CE0F27D3D8090034B977 /* APIFilterAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIFilterAssembly.swift; sourceTree = "<group>"; };
+		D25BD75927E25CD80089B01D /* QuoteNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteNetworking.swift; sourceTree = "<group>"; };
+		D25BD75B27E25DA70089B01D /* AuthorNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorNetworking.swift; sourceTree = "<group>"; };
+		D25BD75D27E25E520089B01D /* TagsNetworking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsNetworking.swift; sourceTree = "<group>"; };
+		D25BD75F27E25EA00089B01D /* MoyaProvider+Custom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+Custom.swift"; sourceTree = "<group>"; };
+		D25BD76227E2619C0089B01D /* QuoteNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteNetworkService.swift; sourceTree = "<group>"; };
+		D25BD76427E2627B0089B01D /* AuthorNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorNetworkService.swift; sourceTree = "<group>"; };
+		D25BD76627E262FE0089B01D /* TagsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsNetworkService.swift; sourceTree = "<group>"; };
 		D2DB3B462774DAE900B7BA63 /* QuotesApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuotesApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DB3B492774DAE900B7BA63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2DB3B502774DAE900B7BA63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -138,12 +150,34 @@
 			path = APIFilterList;
 			sourceTree = "<group>";
 		};
-		D200CE0827D200930034B977 /* ServiceLocator */ = {
+		D25BD75727E25C690089B01D /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				D200CE0927D247350034B977 /* ServiceLocator.swift */,
+				D25BD76127E261830089B01D /* Services */,
+				D25BD75827E25C820089B01D /* Protocols */,
+				D2DB3B672775E9C400B7BA63 /* NetworkService.swift */,
 			);
-			path = ServiceLocator;
+			path = Network;
+			sourceTree = "<group>";
+		};
+		D25BD75827E25C820089B01D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D25BD75927E25CD80089B01D /* QuoteNetworking.swift */,
+				D25BD75B27E25DA70089B01D /* AuthorNetworking.swift */,
+				D25BD75D27E25E520089B01D /* TagsNetworking.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		D25BD76127E261830089B01D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D25BD76227E2619C0089B01D /* QuoteNetworkService.swift */,
+				D25BD76427E2627B0089B01D /* AuthorNetworkService.swift */,
+				D25BD76627E262FE0089B01D /* TagsNetworkService.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		D2DB3B3D2774DAE900B7BA63 = {
@@ -168,7 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				D200CDF327C3D4A50034B977 /* Screens */,
-				D2DB3B5D2774E4D500B7BA63 /* Models */,
+				D2DB3B5D2774E4D500B7BA63 /* DTO */,
 				D2DB3B5E2774E4E300B7BA63 /* Helpers */,
 				D2DB3B5F2774E4EE00B7BA63 /* Extensions */,
 				D2DB3B612774E50100B7BA63 /* Supporting */,
@@ -178,7 +212,7 @@
 			path = QuotesApplication;
 			sourceTree = "<group>";
 		};
-		D2DB3B5D2774E4D500B7BA63 /* Models */ = {
+		D2DB3B5D2774E4D500B7BA63 /* DTO */ = {
 			isa = PBXGroup;
 			children = (
 				D2DB3B692775EA2300B7BA63 /* Author.swift */,
@@ -187,13 +221,13 @@
 				D2DB3B6F2775EA6E00B7BA63 /* Quotes.swift */,
 				D2DB3B712775EA8C00B7BA63 /* Tag.swift */,
 			);
-			path = Models;
+			path = DTO;
 			sourceTree = "<group>";
 		};
 		D2DB3B5E2774E4E300B7BA63 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				D200CE0827D200930034B977 /* ServiceLocator */,
+				D25BD75727E25C690089B01D /* Network */,
 				D2DB3B622774E55500B7BA63 /* Enums */,
 				D2DB3B81277A16C000B7BA63 /* VisualConstants.swift */,
 			);
@@ -203,6 +237,7 @@
 		D2DB3B5F2774E4EE00B7BA63 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D25BD75F27E25EA00089B01D /* MoyaProvider+Custom.swift */,
 				D2DB3B7827761D9300B7BA63 /* UIButton.swift */,
 				D2DB3B7A27761DA900B7BA63 /* UILabel.swift */,
 			);
@@ -232,7 +267,6 @@
 			children = (
 				D2DB3B632774E57100B7BA63 /* AppError.swift */,
 				D2DB3B652774E58800B7BA63 /* UnionLogic.swift */,
-				D2DB3B672775E9C400B7BA63 /* NetworkService.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -382,17 +416,23 @@
 			files = (
 				D2DB3B7E27761DF600B7BA63 /* TagCell.swift in Sources */,
 				D2DB3B82277A16C000B7BA63 /* VisualConstants.swift in Sources */,
+				D25BD75A27E25CD80089B01D /* QuoteNetworking.swift in Sources */,
 				D2DB3B7727761CD100B7BA63 /* RandomQuoteViewConroller.swift in Sources */,
 				D2DB3B7B27761DA900B7BA63 /* UILabel.swift in Sources */,
 				D200CE0C27D2496F0034B977 /* RandomQuoteAssembly.swift in Sources */,
-				D200CE0A27D247360034B977 /* ServiceLocator.swift in Sources */,
+				D25BD75E27E25E520089B01D /* TagsNetworking.swift in Sources */,
 				D2DB3B702775EA6E00B7BA63 /* Quotes.swift in Sources */,
+				D25BD75C27E25DA70089B01D /* AuthorNetworking.swift in Sources */,
+				D25BD76727E262FE0089B01D /* TagsNetworkService.swift in Sources */,
 				D2DB3B642774E57100B7BA63 /* AppError.swift in Sources */,
 				D200CE1027D3D8090034B977 /* APIFilterAssembly.swift in Sources */,
 				D2DB3B662774E58800B7BA63 /* UnionLogic.swift in Sources */,
 				D2DB3B682775E9C400B7BA63 /* NetworkService.swift in Sources */,
+				D25BD76027E25EA00089B01D /* MoyaProvider+Custom.swift in Sources */,
+				D25BD76327E2619C0089B01D /* QuoteNetworkService.swift in Sources */,
 				D200CDFA27C3D6190034B977 /* AuthorsListTableViewController.swift in Sources */,
 				D200CE0127C68CB80034B977 /* APIFilterViewModel.swift in Sources */,
+				D25BD76527E2627B0089B01D /* AuthorNetworkService.swift in Sources */,
 				D2DB3B4A2774DAE900B7BA63 /* AppDelegate.swift in Sources */,
 				D2DB3B6C2775EA3C00B7BA63 /* Authors.swift in Sources */,
 				D2DB3B80277A142400B7BA63 /* RandomQuoteCollectionViewDataSource.swift in Sources */,
