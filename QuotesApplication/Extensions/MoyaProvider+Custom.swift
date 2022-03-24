@@ -12,10 +12,33 @@ extension MoyaProvider {
         request(target) { result in
             switch result {
                 case .success(let response):
-                    if let decodedResult = try? response.map(T.self) {
-                        completion(.success(decodedResult))
+//                    print("🏳️‍🌈 url = \(String(describing: response.request?.url?.absoluteString))")
+//                    print("🚩 status code = \(response.statusCode)")
+//                    let data = response.data
+//                    let decodedDataString = String(data: data, encoding: .utf8)
+//                    print("decodedDataString = <\(String(describing: decodedDataString))>")
+
+                    if response.statusCode >= 400 {
+                        do {
+                            let decodedErrorResponse = try response.map(ErrorResponse.self)
+                            completion(
+                                .failure(
+                                    AppError.networkError(
+                                        decodedErrorResponse.statusCode,
+                                        decodedErrorResponse.statusMessage
+                                    )
+                                )
+                            )
+                        } catch {
+                            completion(.failure(error))
+                        }
                     } else {
-                        completion(.failure(AppError.notDecoded(T.self as! Decodable)))
+                        do {
+                            let decodedResult = try response.map(T.self)
+                            completion(.success(decodedResult))
+                        } catch {
+                            completion(.failure(error))
+                        }
                     }
                 case .failure(let error):
                     completion(.failure(error))

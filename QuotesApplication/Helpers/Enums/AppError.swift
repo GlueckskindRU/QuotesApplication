@@ -9,7 +9,7 @@ import Foundation
 
 enum AppError: Error {
     case notFoundData
-    case notDecoded(Decodable)
+    case networkError(Int, String)
     case otherError(Error)
     
     var localizedDescription: String {
@@ -17,8 +17,8 @@ enum AppError: Error {
             switch self {
                 case .notFoundData:
                     return "notFoundData.Error"
-                case .notDecoded(let sourse):
-                    return "received instance of type <\(type(of: sourse))> was not decoded"
+                case .networkError(let code, let message):
+                    return "Network error with status code \(code): <\(message)>"
                 case .otherError(let error):
                     return error.localizedDescription
             }

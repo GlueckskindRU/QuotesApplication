@@ -26,6 +26,10 @@ extension AuthorNetworkService: AuthorNetworking {
         deps.networkService.apiRequest(.getAuthors, completion: completion)
     }
     
+    func getAutthorsByPage(page: Int, completion: @escaping (Result<Authors, Error>) -> Void) {
+        deps.networkService.apiRequest(.getAuthorsByPage(page: page), completion: completion)
+    }
+    
     func getAuthorByID(id: String, completion: @escaping (Result<Author, Error>) -> Void) {
         deps.networkService.apiRequest(.getAuthorByID(id: id), completion: completion)
     }

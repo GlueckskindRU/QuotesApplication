@@ -16,6 +16,11 @@ extension AuthorsListViewModel {
         let networkService: AuthorNetworking
     }
     
+    enum CellType {
+        case author
+        case activityIndicator
+    }
+    
     struct CellViewModel {
         let authorName: String
         let authorDescription: String
@@ -28,6 +33,8 @@ class AuthorsListViewModel {
     private let deps: Dependencies
     
     private var authors: Authors?
+    private var fetchedAuthors: [Author] = []
+    private var currentPage = 0
     
     init(context: Context, deps: Dependencies) {
         self.context = context
@@ -38,18 +45,20 @@ class AuthorsListViewModel {
 extension AuthorsListViewModel: AuthorsListViewModelProtocol {
     var title: String { context.title }
     
-    var authorsCount: Int { authors?.results.count ?? 0 }
+    var authorsCount: Int { fetchedAuthors.count }
     
     func fetchAuthors(_ completion: @escaping () -> Void) {
-        deps.networkService.getAuthors { [weak self] result in
+        currentPage += 1
+        deps.networkService.getAutthorsByPage(page: currentPage) { [weak self] result in
             guard let self = self else { return }
-            
+
             switch result {
                 case .success(let authors):
                     self.authors = authors
+                    self.fetchedAuthors.append(contentsOf: authors.results)
                     completion()
                 case .failure(let error):
-                    print("2. ERROR: \(error.localizedDescription)")
+                    print("🌈 2. ERROR: \(error.localizedDescription)")
             }
         }
     }
