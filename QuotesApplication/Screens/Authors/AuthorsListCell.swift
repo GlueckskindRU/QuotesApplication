@@ -37,7 +37,7 @@ class AuthorsListCell: UITableViewCell {
         )
     }()
     
-    var viewModel: AuthorsListViewModel.CellViewModel? {
+    var viewModel: AuthorsListCellViewModel? {
         didSet {
             authorNameLabel.text = viewModel?.authorName
             authorDescriptionLabel.text = viewModel?.authorDescription

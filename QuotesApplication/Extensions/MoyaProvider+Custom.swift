@@ -22,12 +22,7 @@ extension MoyaProvider {
                         do {
                             let decodedErrorResponse = try response.map(ErrorResponse.self)
                             completion(
-                                .failure(
-                                    AppError.networkError(
-                                        decodedErrorResponse.statusCode,
-                                        decodedErrorResponse.statusMessage
-                                    )
-                                )
+                                .failure(AppError.networkError(decodedErrorResponse))
                             )
                         } catch {
                             completion(.failure(error))

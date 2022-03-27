@@ -28,6 +28,8 @@
 		D25BD76527E2627B0089B01D /* AuthorNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BD76427E2627B0089B01D /* AuthorNetworkService.swift */; };
 		D25BD76727E262FE0089B01D /* TagsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BD76627E262FE0089B01D /* TagsNetworkService.swift */; };
 		D25BD78927EC3CDF0089B01D /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BD78827EC3CDF0089B01D /* ErrorResponse.swift */; };
+		D25BD79027F0B5AD0089B01D /* AuthorsListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25BD78F27F0B5AD0089B01D /* AuthorsListCellViewModel.swift */; };
+		D281EAB227F0E6F000F6C182 /* InfiniteScrollActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D281EAB127F0E6F000F6C182 /* InfiniteScrollActivityView.swift */; };
 		D2DB3B4A2774DAE900B7BA63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB3B492774DAE900B7BA63 /* AppDelegate.swift */; };
 		D2DB3B512774DAE900B7BA63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2DB3B4F2774DAE900B7BA63 /* Main.storyboard */; };
 		D2DB3B532774DAEA00B7BA63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2DB3B522774DAEA00B7BA63 /* Assets.xcassets */; };
@@ -73,6 +75,8 @@
 		D25BD76427E2627B0089B01D /* AuthorNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorNetworkService.swift; sourceTree = "<group>"; };
 		D25BD76627E262FE0089B01D /* TagsNetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsNetworkService.swift; sourceTree = "<group>"; };
 		D25BD78827EC3CDF0089B01D /* ErrorResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponse.swift; sourceTree = "<group>"; };
+		D25BD78F27F0B5AD0089B01D /* AuthorsListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorsListCellViewModel.swift; sourceTree = "<group>"; };
+		D281EAB127F0E6F000F6C182 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		D2DB3B462774DAE900B7BA63 /* QuotesApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuotesApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2DB3B492774DAE900B7BA63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2DB3B502774DAE900B7BA63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 		D200CDF427C3D52D0034B977 /* Authors */ = {
 			isa = PBXGroup;
 			children = (
+				D25BD78C27F0B58E0089B01D /* Types */,
 				D200CDF527C3D5920034B977 /* AuthorsListCell.swift */,
 				D200CDF727C3D5DA0034B977 /* AuthorsListViewModel.swift */,
 				D200CE0427D200500034B977 /* AuthorsListViewModelProtocol.swift */,
@@ -180,6 +185,14 @@
 				D25BD76627E262FE0089B01D /* TagsNetworkService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		D25BD78C27F0B58E0089B01D /* Types */ = {
+			isa = PBXGroup;
+			children = (
+				D25BD78F27F0B5AD0089B01D /* AuthorsListCellViewModel.swift */,
+			);
+			path = Types;
 			sourceTree = "<group>";
 		};
 		D2DB3B3D2774DAE900B7BA63 = {
@@ -243,6 +256,7 @@
 				D25BD75F27E25EA00089B01D /* MoyaProvider+Custom.swift */,
 				D2DB3B7827761D9300B7BA63 /* UIButton.swift */,
 				D2DB3B7A27761DA900B7BA63 /* UILabel.swift */,
+				D281EAB127F0E6F000F6C182 /* InfiniteScrollActivityView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -419,6 +433,7 @@
 			files = (
 				D2DB3B7E27761DF600B7BA63 /* TagCell.swift in Sources */,
 				D2DB3B82277A16C000B7BA63 /* VisualConstants.swift in Sources */,
+				D281EAB227F0E6F000F6C182 /* InfiniteScrollActivityView.swift in Sources */,
 				D25BD75A27E25CD80089B01D /* QuoteNetworking.swift in Sources */,
 				D2DB3B7727761CD100B7BA63 /* RandomQuoteViewConroller.swift in Sources */,
 				D2DB3B7B27761DA900B7BA63 /* UILabel.swift in Sources */,
@@ -430,6 +445,7 @@
 				D2DB3B642774E57100B7BA63 /* AppError.swift in Sources */,
 				D200CE1027D3D8090034B977 /* APIFilterAssembly.swift in Sources */,
 				D2DB3B662774E58800B7BA63 /* UnionLogic.swift in Sources */,
+				D25BD79027F0B5AD0089B01D /* AuthorsListCellViewModel.swift in Sources */,
 				D2DB3B682775E9C400B7BA63 /* NetworkService.swift in Sources */,
 				D25BD76027E25EA00089B01D /* MoyaProvider+Custom.swift in Sources */,
 				D25BD78927EC3CDF0089B01D /* ErrorResponse.swift in Sources */,

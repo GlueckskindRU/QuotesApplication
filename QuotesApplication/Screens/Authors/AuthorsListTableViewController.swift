@@ -21,14 +21,19 @@ class AuthorsListTableViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private var loadingMoreView:InfiniteScrollActivityView?
     lazy private var tableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.backgroundColor = .clear
         tableView.allowsSelection = false
         tableView.estimatedRowHeight = UITableView.automaticDimension
-        tableView.register(AuthorsListCell.self, forCellReuseIdentifier: String(describing: AuthorsListCell.self))
+        tableView.register(
+            AuthorsListCell.self,
+            forCellReuseIdentifier: String(describing: AuthorsListCell.self)
+        )
         return tableView
     }()
     
@@ -39,8 +44,10 @@ class AuthorsListTableViewController: UIViewController {
         addSubviews()
         setupLayout()
         bindUIWithViewModel()
+        setupActivityIndicator()
         
         navigationItem.title = viewModel.title
+        viewModel.fetchAuthors()
     }
     
     private func addSubviews() {
@@ -48,17 +55,34 @@ class AuthorsListTableViewController: UIViewController {
     }
     
     private func bindUIWithViewModel() {
-        viewModel.fetchAuthors { [weak self] in
-            self?.tableView.reloadData()
+        viewModel.didFetchAuthorsList = { [weak self] in
+            guard let self = self else { return }
+            self.loadingMoreView?.stopAnimating()
+            self.tableView.reloadData()
         }
     }
     
     private func setupLayout() {
         tableView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
+    
+    private func setupActivityIndicator() {
+        let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView!.isHidden = true
+        tableView.addSubview(loadingMoreView!)
+        
+        var insets = tableView.contentInset
+        insets.bottom += InfiniteScrollActivityView.defaultHeight
+        tableView.contentInset = insets
+    }
 }
+
+// MARK: - UITableViewDelegate
+
+extension AuthorsListTableViewController: UITableViewDelegate { }
 
 // MARK: - UITableViewDataSource
 
@@ -68,12 +92,35 @@ extension AuthorsListTableViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: AuthorsListCell.self), for: indexPath) as? AuthorsListCell else {
-            return UITableViewCell()
-        }
-        
+        guard
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: String(describing: AuthorsListCell.self),
+                for: indexPath) as? AuthorsListCell
+        else { return UITableViewCell() }
         cell.viewModel = viewModel.cellViewModel(for: indexPath.row)
-        
         return cell
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension AuthorsListTableViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let isNeededToIndicateActivityIndicator = !viewModel.isLastPageReached && !viewModel.isMoreDataLoading
+        if isNeededToIndicateActivityIndicator {
+            // Calculate the position of one screen length before the bottom of the results
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            // When the user has scrolled past the threshold, start requesting
+            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+                viewModel.isMoreDataLoading = true
+                // Update position of loadingMoreView, and start loading indicator
+                let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
+                loadingMoreView?.frame = frame
+                loadingMoreView?.startAnimating()
+
+                viewModel.fetchAuthors()
+            }
+        }
     }
 }

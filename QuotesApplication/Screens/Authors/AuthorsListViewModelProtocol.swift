@@ -8,9 +8,14 @@
 import Foundation
 
 protocol AuthorsListViewModelProtocol {
+//    associatedtype CellType
+    
     var title: String { get }
     var authorsCount: Int { get }
+    var isLastPageReached: Bool { get }
+    var isMoreDataLoading: Bool { get set }
+    var didFetchAuthorsList: (() -> Void)? { get set }
     
-    func fetchAuthors(_ completion: @escaping () -> Void)
-    func cellViewModel(for row: Int) -> AuthorsListViewModel.CellViewModel
+    func fetchAuthors()
+    func cellViewModel(for row: Int) -> AuthorsListCellViewModel
 }

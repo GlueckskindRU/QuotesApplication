@@ -15,26 +15,22 @@ extension AuthorsListViewModel {
     struct Dependencies {
         let networkService: AuthorNetworking
     }
-    
-    enum CellType {
-        case author
-        case activityIndicator
-    }
-    
-    struct CellViewModel {
-        let authorName: String
-        let authorDescription: String
-        let quotesCount: String
-    }
 }
 
 class AuthorsListViewModel {
     private let context: Context
     private let deps: Dependencies
     
-    private var authors: Authors?
+    private var authors: Authors? {
+        didSet {
+            didFetchAuthorsList?()
+        }
+    }
     private var fetchedAuthors: [Author] = []
     private var currentPage = 0
+    
+    var didFetchAuthorsList: (() -> Void)?
+    var isMoreDataLoading = false
     
     init(context: Context, deps: Dependencies) {
         self.context = context
@@ -47,35 +43,44 @@ extension AuthorsListViewModel: AuthorsListViewModelProtocol {
     
     var authorsCount: Int { fetchedAuthors.count }
     
-    func fetchAuthors(_ completion: @escaping () -> Void) {
+    var isLastPageReached: Bool {
+        guard
+            let authors = authors,
+            !fetchedAuthors.isEmpty
+        else { return false }
+        
+        return authors.lastItemIndex == nil
+    }
+    
+    func fetchAuthors() {
         currentPage += 1
         deps.networkService.getAutthorsByPage(page: currentPage) { [weak self] result in
             guard let self = self else { return }
 
             switch result {
                 case .success(let authors):
-                    self.authors = authors
                     self.fetchedAuthors.append(contentsOf: authors.results)
-                    completion()
+                    self.authors = authors
+                    self.isMoreDataLoading = false
                 case .failure(let error):
                     print("🌈 2. ERROR: \(error.localizedDescription)")
             }
         }
     }
     
-    func cellViewModel(for row: Int) -> CellViewModel {
-        guard let author = authors?.results[row] else {
-            return CellViewModel(
+    func cellViewModel(for row: Int) -> AuthorsListCellViewModel {
+        guard fetchedAuthors.count > row else {
+            return AuthorsListCellViewModel(
                 authorName: "",
                 authorDescription: "",
                 quotesCount: ""
             )
         }
         
-        return CellViewModel(
-            authorName: author.name,
-            authorDescription: author.authorDescription,
-            quotesCount: "\(author.quoteCount)"
+        return AuthorsListCellViewModel(
+            authorName: fetchedAuthors[row].name,
+            authorDescription: fetchedAuthors[row].authorDescription,
+            quotesCount: String(describing: fetchedAuthors[row].quoteCount)
         )
     }
 }
