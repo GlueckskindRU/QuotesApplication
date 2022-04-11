@@ -22,19 +22,19 @@ class AuthorNetworkService {
 }
 
 extension AuthorNetworkService: AuthorNetworking {
-    func getAuthors(completion: @escaping (Result<Authors, Error>) -> Void) {
+    func getAuthors(completion: @escaping (Result<Authors, AppError>) -> Void) {
         deps.networkService.apiRequest(.getAuthors, completion: completion)
     }
     
-    func getAutthorsByPage(page: Int, completion: @escaping (Result<Authors, Error>) -> Void) {
+    func getAutthorsByPage(page: Int, completion: @escaping (Result<Authors, AppError>) -> Void) {
         deps.networkService.apiRequest(.getAuthorsByPage(page: page), completion: completion)
     }
     
-    func getAuthorByID(id: String, completion: @escaping (Result<Author, Error>) -> Void) {
+    func getAuthorByID(id: String, completion: @escaping (Result<Author, AppError>) -> Void) {
         deps.networkService.apiRequest(.getAuthorByID(id: id), completion: completion)
     }
     
-    func getAuthorBySlug(slug: [String], completion: @escaping (Result<Author, Error>) -> Void) {
+    func getAuthorBySlug(slug: [String], completion: @escaping (Result<Author, AppError>) -> Void) {
         deps.networkService.apiRequest(.getAuthorBySlug(slug: slug), completion: completion)
     }
 }

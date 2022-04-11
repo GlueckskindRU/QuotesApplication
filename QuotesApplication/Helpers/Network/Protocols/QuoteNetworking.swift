@@ -8,7 +8,7 @@
 import Foundation
 
 protocol QuoteNetworking {
-    func getRandomQuote(completion: @escaping (Result<Quote, Error>) -> Void)
-    func getQuotes(page: Int?, tags: [String]?, logic: UnionLogic?, author: String?, completion: @escaping (Result<Quotes, Error>) -> Void)
-    func getQuote(id: String, completion: @escaping (Result<Quote, Error>) -> Void)
+    func getRandomQuote(completion: @escaping (Result<Quote, AppError>) -> Void)
+    func getQuotes(page: Int?, tags: [String]?, logic: UnionLogic?, author: String?, completion: @escaping (Result<Quotes, AppError>) -> Void)
+    func getQuote(id: String, completion: @escaping (Result<Quote, AppError>) -> Void)
 }

@@ -58,11 +58,11 @@ extension AuthorsListViewModel: AuthorsListViewModelProtocol {
             guard let self = self else { return }
 
             switch result {
-                case .success(let authors):
+                case let .success(authors):
                     self.fetchedAuthors.append(contentsOf: authors.results)
                     self.authors = authors
                     self.isMoreDataLoading = false
-                case .failure(let error):
+                case let .failure(error):
                     print("🌈 2. ERROR: \(error.localizedDescription)")
             }
         }

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol TagsNetworking {
-    func getTags(completion: @escaping (Result<Tags, Error>) -> Void)
+    func getTags(completion: @escaping (Result<Tags, AppError>) -> Void)
 }

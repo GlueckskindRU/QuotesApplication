@@ -22,15 +22,15 @@ class QuoteNetworkService {
 }
 
 extension QuoteNetworkService: QuoteNetworking {
-    func getRandomQuote(completion: @escaping (Result<Quote, Error>) -> Void) {
+    func getRandomQuote(completion: @escaping (Result<Quote, AppError>) -> Void) {
         deps.networkService.apiRequest(.getRandomQuote, completion: completion)
     }
     
-    func getQuotes(page: Int?, tags: [String]?, logic: UnionLogic?, author: String?, completion: @escaping (Result<Quotes, Error>) -> Void) {
+    func getQuotes(page: Int?, tags: [String]?, logic: UnionLogic?, author: String?, completion: @escaping (Result<Quotes, AppError>) -> Void) {
         deps.networkService.apiRequest(.getQuotes(page: page, tags: tags, logic: logic, author: author), completion: completion)
     }
     
-    func getQuote(id: String, completion: @escaping (Result<Quote, Error>) -> Void) {
+    func getQuote(id: String, completion: @escaping (Result<Quote, AppError>) -> Void) {
         deps.networkService.apiRequest(.getQuote(id: id), completion: completion)
     }
 }

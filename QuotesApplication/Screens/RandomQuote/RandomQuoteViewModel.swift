@@ -32,13 +32,13 @@ extension RandomQuoteViewModel: RandomQuoteViewModelProtocol {
             guard let self = self else { return }
             
             switch result {
-                case .success(let randomQuote):
+                case let .success(randomQuote):
                     self.bindQuoteText?(randomQuote.content)
                     self.bindTags?(randomQuote.tags)
                     self.tagsArray = randomQuote.tags
                     self.bindAuthor?(randomQuote.author)
                     completion()
-                case .failure(let error):
+                case let .failure(error):
                     print("2. ERROR: \(error.localizedDescription)")
             }
         }

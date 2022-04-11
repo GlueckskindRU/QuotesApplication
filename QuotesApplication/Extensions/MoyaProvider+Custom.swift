@@ -8,35 +8,34 @@
 import Moya
 
 extension MoyaProvider {
-    func apiRequest<T: Decodable>(_ target: Target, completion: @escaping (Result<T, Error>) -> Void) {
+    func apiRequest<T: Decodable>(_ target: Target, completion: @escaping (Result<T, AppError>) -> Void) {
         request(target) { result in
             switch result {
-                case .success(let response):
+                case let .success(response):
 //                    print("🏳️‍🌈 url = \(String(describing: response.request?.url?.absoluteString))")
 //                    print("🚩 status code = \(response.statusCode)")
 //                    let data = response.data
 //                    let decodedDataString = String(data: data, encoding: .utf8)
 //                    print("decodedDataString = <\(String(describing: decodedDataString))>")
 
-                    if response.statusCode >= 400 {
-                        do {
-                            let decodedErrorResponse = try response.map(ErrorResponse.self)
-                            completion(
-                                .failure(AppError.networkError(decodedErrorResponse))
-                            )
-                        } catch {
-                            completion(.failure(error))
-                        }
-                    } else {
-                        do {
-                            let decodedResult = try response.map(T.self)
-                            completion(.success(decodedResult))
-                        } catch {
-                            completion(.failure(error))
-                        }
+                    do {
+                        let decodedResult = try response.map(T.self)
+                        completion(.success(decodedResult))
+                    } catch {
+                        completion(.failure(AppError.otherError(error)))
                     }
-                case .failure(let error):
-                    completion(.failure(error))
+                case let .failure(error):
+                    do {
+                        guard let errorResponse = error.response else {
+                            return completion(.failure(AppError.otherError(error)))
+                        }
+                        let decodedErrorResponse = try errorResponse.map(ErrorResponse.self)
+                        completion(
+                            .failure(AppError.networkError(decodedErrorResponse))
+                        )
+                    } catch {
+                        completion(.failure(AppError.otherError(error)))
+                    }
             }
         }
     }

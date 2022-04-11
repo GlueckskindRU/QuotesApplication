@@ -22,7 +22,7 @@ class TagsNetworkService {
 }
 
 extension TagsNetworkService: TagsNetworking {
-    func getTags(completion: @escaping (Result<Tags, Error>) -> Void) {
+    func getTags(completion: @escaping (Result<Tags, AppError>) -> Void) {
         deps.networkService.apiRequest(.getTags, completion: completion)
     }
 }
