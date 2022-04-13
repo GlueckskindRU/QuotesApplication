@@ -112,7 +112,7 @@ extension AuthorsListTableViewController: UIScrollViewDelegate {
             let scrollViewContentHeight = tableView.contentSize.height
             let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
             // When the user has scrolled past the threshold, start requesting
-            if(scrollView.contentOffset.y > scrollOffsetThreshold && tableView.isDragging) {
+            if(scrollView.contentOffset.y > (scrollOffsetThreshold * 0.8) && tableView.isDragging) {
                 viewModel.isMoreDataLoading = true
                 // Update position of loadingMoreView, and start loading indicator
                 let frame = CGRect(x: 0, y: tableView.contentSize.height, width: tableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
